@@ -259,7 +259,7 @@ class Sort {
 				bucket[index].push(+item);
 			}
 			// 出桶
-			for (k = 0; k < 10; k++) {
+			for (k = 0; k < bucket.length; k++) {
 				if (bucket[k] && bucket[k].length > 0) {
 					result = result.concat(bucket[k]);
 				}
