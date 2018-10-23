@@ -1,7 +1,8 @@
 /**
- *           1
- *      2    3   4
- *    5  6  7  8
+ *            1
+ *      2     3      4  
+ *    5   6   7  8  9
+ *   10  11 12
  * 
  */
 class Tree {
@@ -49,10 +50,18 @@ let c4 = new Tree(5);
 let c5 = new Tree(6);
 let c6 = new Tree(7);
 let c7 = new Tree(8);
+let c8 = new Tree(9);
+let c9 = new Tree(10);
+let c10 = new Tree(11);
+let c11 = new Tree(12);
 
 nt.children = [c1, c2, c3];
 c1.children = [c4, c5];
 c2.children = [c6, c7];
+c3.children = [c8];
+c4.children = [c9];
+c5.children = [c10];
+c6.children = [c11];
 
 module.exports = {
     bt,

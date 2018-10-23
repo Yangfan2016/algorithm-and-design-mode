@@ -3,54 +3,54 @@
 const { bt, nt } = require("./init");
 
 // dfs
-function dfs(root, res) {
-    res = res || [];
-    if (root) {
-        res.push(root.val);
-        for (let i = 0; i < root.children.length; i++) {
-            dfs(root.children[i], res);
+function dfs(root, stack) {
+    stack = stack || []; // 结果栈
+    if (root) { // 容错
+        stack.push(root.val); // 将父结点插入结果栈
+        for (let i = 0; i < root.children.length; i++) { // 将其所有子结点所在的树做同上操作
+            dfs(root.children[i], stack);
         }
     }
-    return res;
+    return stack;
 }
 
 // pre-order
-function preOrder(root, res) {
-    res = res || [];
+function preOrder(root, stack) {
+    stack = stack || [];
     if (root) {
-        res.push(root.val);
-        if (root.left) preOrder(root.left, res);
-        if (root.right) preOrder(root.right, res);
+        stack.push(root.val);
+        if (root.left) preOrder(root.left, stack);
+        if (root.right) preOrder(root.right, stack);
     }
-    return res;
+    return stack;
 }
 
 // in-order
-function inOrder(root, res) {
-    res = res || [];
+function inOrder(root, stack) {
+    stack = stack || [];
     if (root) {
-        if (root.left) inOrder(root.left, res);
-        res.push(root.val);
-        if (root.right) inOrder(root.right, res);
+        if (root.left) inOrder(root.left, stack);
+        stack.push(root.val);
+        if (root.right) inOrder(root.right, stack);
     }
-    return res;
+    return stack;
 }
 
 // post-order
-function postOrder(root, res) {
-    res = res || [];
+function postOrder(root, stack) {
+    stack = stack || [];
     if (root) {
-        if (root.left) postOrder(root.left, res);
-        if (root.right) postOrder(root.right, res);
-        res.push(root.val);
+        if (root.left) postOrder(root.left, stack);
+        if (root.right) postOrder(root.right, stack);
+        stack.push(root.val);
     }
-    return res;
+    return stack;
 }
 
 let r = [];
 // r = preOrder(bt); // [1, 2, 4, 8, 5, 3, 6, 7]
 // r = inOrder(bt); // [8, 4, 2, 5, 1, 6, 3, 7]
 // r = postOrder(bt); // [8, 4, 5, 2, 6, 7, 3, 1]
-r=dfs(nt); // [1, 2, 5, 6, 3, 7, 8, 4]
+r = dfs(nt); // [1, 2, 5, 6, 3, 7, 8, 4]
 console.log(r);
 
